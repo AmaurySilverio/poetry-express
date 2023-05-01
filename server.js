@@ -54,11 +54,13 @@ app.get("/", (req, res) => {
 app.post("/messages", (req, res) => {
   // console.log(req.body);
   let date = new Date();
+  date = date.toString();
+  console.log(date);
   db.collection("poems").insertOne(
     {
       name: req.body.name.trim(),
       poem: req.body.poem,
-      date: date,
+      date: date.substring(0, 21),
       thumbUp: 0,
     },
     (err, result) => {
@@ -71,12 +73,13 @@ app.post("/messages", (req, res) => {
 app.post("/messages/reply", (req, res) => {
   // console.log(req.body);
   let date = new Date();
+  date = date.toString();
   db.collection("poems").insertOne(
     {
       response: req.body.response,
       name: req.body.name.trim(),
       poem: req.body.poem,
-      date: date,
+      date: date.substring(0, 21),
       reply: true,
       thumbUp: 0,
     },
@@ -116,7 +119,7 @@ app.delete("/delete", (req, res) => {
   console.log(req.body);
   let thumbUpNumber = Number(req.body.thumbsUpCount);
   db.collection("poems").findOneAndDelete(
-    { poem: req.body.poem, thumbUp: thumbUpNumber },
+    { name: req.body.name.trim(), thumbUp: thumbUpNumber },
     (err, result) => {
       console.log(err);
       if (err) return res.send(500, err);

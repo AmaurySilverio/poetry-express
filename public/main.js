@@ -47,8 +47,8 @@ Array.from(reply).forEach(function (element) {
 Array.from(thumbUp).forEach(function (element) {
   element.addEventListener("click", function () {
     if (
-      this.parentNode.parentNode.childNodes[11].firstChild ==
-      "i.fa-solid.fa-reply"
+      this.parentNode.parentNode.childNodes[11].firstChild.className ===
+      "fa-solid fa-reply"
     ) {
       const [
         name,
@@ -123,7 +123,7 @@ Array.from(trash).forEach(function (element) {
   element.addEventListener("click", function () {
     if (
       this.parentNode.parentNode.childNodes[13].parentElement.childNodes[11]
-        .childNodes[0] == "i.fa-solid.fa-reply"
+        .childNodes[0].className == "fa-solid fa-reply"
     ) {
       const [
         name,

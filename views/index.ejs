@@ -4,7 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <title>Poetry Board</title>
-  <!-- <link rel="shortcut icon" href="favicon.ico"> -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
   <script src="https://kit.fontawesome.com/d74d0e70eb.js" crossorigin="anonymous"></script>
   <!-- <link rel="stylesheet" href="font-awesome.min.css"> -->
   <link rel="stylesheet" href="styles.css">
@@ -12,31 +13,38 @@
 
 <body>
   <h1>Poetry Board</h1>
-  <h2>Add your poems, ramblings, thoughts, ideas here and collaborate with the local community.</h2>
+  <h2>Add your poems, ramblings, thoughts or ideas here and collaborate with the local community.</h2>
 
-  <h2>Add a message:</h2>
 
-  <form action="/messages" method="POST">
-    <label for="name">Name:</label>
-    <input type="text" placeholder="name" name="name">
-    <label for="poem">Poem:</label>
-    <textarea placeholder="Twas the best of times, Twas the worst of times" name="poem"></textarea>
-    <button type="submit">Submit</button>
-  </form>
+  <div class="form-container">
+    <h2>Add a message:</h2>
+    <form action="/messages" method="POST">
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" placeholder="name" name="name" class="form-control" required>
+      </div>
+      <div class="form-group">
+        <label for="poem">Poem:</label>
+        <textarea placeholder="Twas the best of times, Twas the worst of times" name="poem" class="form-control"
+          required></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
 
 
   <div id="myModal" class="modal">
     <div class="modal-content">
       <div class="modal-header">
-        <span id="close" class="close">&times;</span>
         <h2>Enter Reply Below:</h2>
+        <span id="close" class="close">&times;</span>
       </div>
       <div class="modal-body">
         <form action="/messages/reply" method="POST">
           <label for="response">In Response To:</label>
-          <input type="text" placeholder="name" name="response">
+          <input type="text" placeholder="name" name="response" required>
           <label for="name">Name:</label>
-          <input type="text" placeholder="name" name="name">
+          <input type="text" placeholder="name" name="name" required>
           <label for="poem">Reply:</label>
           <textarea placeholder="That was very moving." name="poem"></textarea>
           <button type="submit">Submit</button>
@@ -57,7 +65,7 @@
           <span>
             <%= entry[i].name %>
           </span>
-          <span>
+          <span class="margin-left">
             <%= entry[i].poem %>
           </span>
           <span>
@@ -72,9 +80,9 @@
         </li>
         <% } %>
           <% if(entry[i].reply){%>
-            <li class="indent">
-              <span>
-                <%= entry[i].response %>
+            <li class="indent message">
+              <span class="color">
+                In Response To: <%= entry[i].response %>
               </span>
               <span>
                 <%= entry[i].name %>
