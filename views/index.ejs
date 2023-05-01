@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Poetry Board</title>
+  <!-- <link rel="shortcut icon" href="favicon.ico"> -->
+  <script src="https://kit.fontawesome.com/d74d0e70eb.js" crossorigin="anonymous"></script>
+  <!-- <link rel="stylesheet" href="font-awesome.min.css"> -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <h1>Poetry Board</h1>
+  <h2>Add your poems, ramblings, thoughts, ideas here and collaborate with the local community.</h2>
+
+  <h2>Add a message:</h2>
+
+  <form action="/messages" method="POST">
+    <label for="name">Name:</label>
+    <input type="text" placeholder="name" name="name">
+    <label for="poem">Poem:</label>
+    <textarea placeholder="Twas the best of times, Twas the worst of times" name="poem"></textarea>
+    <button type="submit">Submit</button>
+  </form>
+
+
+  <div id="myModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span id="close" class="close">&times;</span>
+        <h2>Enter Reply Below:</h2>
+      </div>
+      <div class="modal-body">
+        <form action="/messages/reply" method="POST">
+          <label for="response">In Response To:</label>
+          <input type="text" placeholder="name" name="response">
+          <label for="name">Name:</label>
+          <input type="text" placeholder="name" name="name">
+          <label for="poem">Reply:</label>
+          <textarea placeholder="That was very moving." name="poem"></textarea>
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <h3>Remember to follow community guidelines. <span>This is a safe space.</span></h3>
+      </div>
+    </div>
+  </div>
+
+
+  <h3>Poems:</h3>
+  <ul class="messages">
+    <% for(var i=0; i<entry.length; i++) {%>
+      <% if(!entry[i].reply){%>
+        <li class="message">
+          <span>
+            <%= entry[i].name %>
+          </span>
+          <span>
+            <%= entry[i].poem %>
+          </span>
+          <span>
+            <%= entry[i].date %>
+          </span>
+          <span>
+            <%= entry[i].thumbUp %>
+          </span>
+          <span><i class="fa fa-thumbs-up" aria-hidden="true"></i></span>
+          <span><i class="fa-solid fa-reply" aria-hidden="true"></i></span>
+          <span><i class="fa fa-trash" aria-hidden="true"></i></span>
+        </li>
+        <% } %>
+          <% if(entry[i].reply){%>
+            <li class="indent">
+              <span>
+                <%= entry[i].response %>
+              </span>
+              <span>
+                <%= entry[i].name %>
+              </span>
+              <span>
+                <%= entry[i].poem %>
+              </span>
+              <span>
+                <%= entry[i].date %>
+              </span>
+              <span>
+                <%= entry[i].thumbUp %>
+              </span>
+              <span><i class="fa fa-thumbs-up" aria-hidden="true"></i></span>
+              <span><i class="fa fa-trash" aria-hidden="true"></i></span>
+            </li>
+            <% } %>
+              <% } %>
+  </ul>
+
+  <script src="main.js"></script>
+
+</body>
+
+</html>
