@@ -6,7 +6,7 @@ Poetry Board using Node.js and Express
 
 This project was built using Node.js, Express and EJS (Embedded Javascript Templating) for more dynamic programming.
 
-##Lessons Learned:
+## Lessons Learned:
 
 Prior to completing this project, I had never worked with a JS templating framework and was unsure as to how it was connecting the database to the frontend. After completing this project I feel much more comfortable working with EJS and look forward to working with other templating languages and creating more dynamic CRUD apps.
 ## Installation
